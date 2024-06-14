@@ -12,6 +12,7 @@ addMissionEventHandler ["EntityRespawned", {
 }];
 
 addMissionEventHandler ["HandleDisconnect", {
+	[_unit] call RR_Persistence_fnc_SaveLoadout;
 	if !(allPlayers isEqualTo []) exitWith {false};
 	params ["_unit"];
 	deleteVehicle _unit;

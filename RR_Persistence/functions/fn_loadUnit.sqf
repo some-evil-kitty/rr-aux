@@ -4,7 +4,7 @@
 //
 //
 
-if (isServer) exitwith {};
+if !(isServer) exitwith {};
 
 params ["_unit"];
 

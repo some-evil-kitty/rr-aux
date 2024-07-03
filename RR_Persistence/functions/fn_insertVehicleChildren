@@ -1,0 +1,36 @@
+//Written by: Jenna
+//
+//
+// Adds children actions to vehicle storage parent
+//
+// Example :
+// [boxThingy] call knd_fnc_insertVehicleChildren
+
+#define GET_NUMBER(config,default) (if (isNumber (config)) then {getNumber (config)} else {default})
+#define GET_TEXT(config,default) (if (isText (config)) then {getText (config)} else {default})
+params ["_obj"];
+
+private _vehicles = profileNamespace getVariable ["RR_Persistence_VehiclesHash",createHashmap];
+
+private _children = [];
+
+{
+_y params ["_classname","_magsInfo","_fuel","cargoInfo"];
+private _childConfig = ConfigFile >> "CfgVehicles" >> _className;
+
+	_children pushback [[
+		format ["knd_vehicle_%1",_forEachIndex],
+		format ["Deploy %1", getText(_childConfig >> "DisplayName")],
+		"",
+		{
+		params ["","","_classname","_magsInfo","_fuel","cargoInfo"];
+		[_obj,_classname,_magsinfo,_fuel,cargoInfo] call RR_fnc_deployVehicle;
+		},
+		{true},
+		{},
+		[_obj,_classname,_magsinfo,_fuel,cargoInfo]
+	] call ace_interact_menu_fnc_createaction,[],_obj]
+
+} foreach _vehicles;
+
+_children

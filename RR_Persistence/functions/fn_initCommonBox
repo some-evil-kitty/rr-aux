@@ -12,4 +12,4 @@ private _inventory = profileNamespace getVariable ["RR_Persistence_CommonboxInve
 [_box,_inventory] call ace_common_fnc_loadInventory;
 
 RR_Persistence_CommonBoxObject = _box;
-publicVariable "RR_Persistence_CommonBoxObject";
+

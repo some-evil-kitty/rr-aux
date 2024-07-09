@@ -1,4 +1,4 @@
-if (isServer && isDedicated) then {
+if (isServer && isDedicated && RR_enablePersistence) then {
 	[] call rr_persistence_fnc_postinitServer;
 };
 RR_Persistence_LoadOnlyOnce = true

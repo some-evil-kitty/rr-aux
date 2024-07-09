@@ -6,12 +6,14 @@ class CfgPatches
 		requiredAddons[]=
 		{
 			"A3_Modules_F",
-			"RR_core"
+			"RR_core",
+			"ls_ammobox"
 		};
 		requiredVersion=0.1;
 		units[]=
 		{
-			"RR_Persistence_Saveloadouts_F"
+			"RR_Persistence_Saveloadouts_F",
+			"RR_commonBox_F"
 		};
 		weapons[]={};
     };
@@ -28,6 +30,8 @@ class CfgFunctions
 			class postinitServer{};
 			class saveLoadout{};
 			class SaveAllLoadouts{};
+			class initCommonBox{};
+			class insertVehicleChildren{};
 		};
 	};
 };
@@ -37,7 +41,11 @@ class extended_postinit_eventhandlers
 	class RR_Persistence
 	{
 		init="call compile preprocessFileLineNumbers 'RR_Persistence\xeh_postinit.sqf'";
-	}
+	};
+	class RR_commonBox_F
+	{
+		init = "_this call RR_fnc_initCommonBox";
+	};
 };
 
 
@@ -77,4 +85,18 @@ class CfgVehicles
 		is3DEN = 0;							// 1 to run init function in Eden Editor as well
 
 	};
+	class ls_carrybox_base;
+	class RR_commonBox_F : ls_carrybox_base
+	{
+		displayName = "Repo's Raiders Common Box";
+        	armor = 10e10;
+		editorCategory = "EdCat_Supplies";
+		scopecurator = 2;
+		knd_crates_hasBeacon = 1;
+		side = 3;
+		ace_dragging_ignoreWeight=1;
+        	ace_dragging_ignoreWeightCarry=1;
+		maximumLoad = 10e10;
+	};
+
 };

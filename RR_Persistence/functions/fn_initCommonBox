@@ -8,7 +8,11 @@ if !(isServer || RR_enablePersistence) exitwith {};
 
 params ["_box"];
 
-if !(isNull RR_Persistence_CommonBoxObject) then {deleteVehicle RR_Persistence_CommonBoxObject};
+if !(isNull RR_Persistence_CommonBoxObject) then {
+private _inventory = [RR_Persistence_CommonBoxObject] call ace_common_fnc_getInventory;
+profileNamespace setVariable ["RR_Persistence_CommonboxInventory",_inventory];
+deleteVehicle RR_Persistence_CommonBoxObject
+};
 
 private _inventory = profileNamespace getVariable ["RR_Persistence_CommonboxInventory",[]];
 [_box,_inventory] call ace_common_fnc_loadInventory;

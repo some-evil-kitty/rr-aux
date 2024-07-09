@@ -20,5 +20,6 @@ addMissionEventHandler ["HandleDisconnect", {
 }];
 
 addMissionEventHandler ["MPEnded", {
+	call RR_fnc_saveAllLoadouts;
 	saveProfileNamespace;
 }];

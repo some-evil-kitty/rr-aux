@@ -4,7 +4,7 @@
 //
 //
 
-if !(isServer) exitwith {};
+if !(isServer || RR_enablePersistence) exitwith {};
 
 params ["_unit"];
 

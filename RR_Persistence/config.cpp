@@ -32,6 +32,7 @@ class CfgFunctions
 			class SaveAllLoadouts{};
 			class initCommonBox{};
 			class insertVehicleChildren{};
+			class initArsenal{};
 		};
 	};
 };
